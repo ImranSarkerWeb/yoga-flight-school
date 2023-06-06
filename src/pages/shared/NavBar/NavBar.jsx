@@ -1,17 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/yogaLogo.png";
 const NavBar = () => {
   const navContent = (
     <>
       {" "}
       <li>
-        <a>Item 1</a>
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-blue-600" : "")}
+          to="/"
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <a>Parent</a>
+        <a>Instructors</a>
       </li>
       <li>
-        <a>Item 3</a>
+        <a>Classes</a>
+      </li>
+      <li>
+        <a>Dashboard</a>
       </li>
     </>
   );
@@ -51,7 +59,13 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navContent}</ul>
       </div>
+
       <div className="navbar-end">
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          </div>
+        </label>
         <a className="btn">Button</a>
       </div>
     </div>
