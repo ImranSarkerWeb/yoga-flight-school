@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import { useForm } from "react-hook-form";
 
 const SignUp = () => {
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const photo = form.photo.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(name, photo, email, password);
-  };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -23,18 +23,20 @@ const SignUp = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleSignUp} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
               <input
-                type="text"
-                required
-                name="name"
+                {...register("name", { required: true, maxLength: 50 })}
+                aria-invalid={errors.name ? "true" : "false"}
                 placeholder="Name"
                 className="input input-bordered"
               />
+              {errors.name?.type === "required" && (
+                <p role="alert">First name is required</p>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -53,27 +55,46 @@ const SignUp = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
-                required
+                {...register("mail", { required: "Email Address is required" })}
+                aria-invalid={errors.mail ? "true" : "false"}
                 name="email"
-                type="text"
+                type="email"
                 placeholder="email"
                 className="input input-bordered"
               />
+              {errors.mail && (
+                <p role="alert" className="text-red-500">
+                  {errors.mail?.message}
+                </p>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                {...register("password", {
+                  pattern: /^[A-Za-z]+$/i,
+                  required: true,
+                  maxLength: 31,
+                })}
                 placeholder="password"
-                required
                 name="password"
                 className="input input-bordered"
               />
+              {errors.name?.type === "required" && (
+                <p role="alert" className="text-red-700">
+                  Password is required
+                </p>
+              )}
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Sign Up</button>
+              <input
+                className="btn btn-primary"
+                value={"Sign Up"}
+                type="submit"
+              />
+              {/* <button>Sign Up</button> */}
             </div>
           </form>
           <p className="text-center mb-4">

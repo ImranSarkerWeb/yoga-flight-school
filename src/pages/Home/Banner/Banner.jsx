@@ -19,7 +19,7 @@ import img16 from "../../../assets/Banner/16.jpg";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 const Banner = () => {
   return (
-    <Carousel autoPlay={true} infiniteLoop={true}>
+    <Carousel autoPlay={true} infiniteLoop={true} stopOnHover={false}>
       <div>
         <img src={img1} />
       </div>
