@@ -1,0 +1,4 @@
+.hero {
+  background-image: url("../../../assets/error/errorpage.jpg");
+  object-fit: contain;
+}
