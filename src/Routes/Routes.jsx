@@ -5,6 +5,7 @@ import ErrorPage from "../pages/shared/ErrorPage/ErrorPage";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Instructors from "../pages/Instructors/Instructors";
+import Dashboard from "../layout/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,17 @@ const router = createBrowserRouter([
       {
         path: "/instructors",
         element: <Instructors></Instructors>,
+      },
+    ],
+  },
+
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "userhome",
+        element: "juset dashboard",
       },
     ],
   },
