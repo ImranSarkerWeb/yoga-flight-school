@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
+  const { createUser, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -10,7 +13,20 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const password = watch("password", "");
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const { name, photo, email, password } = data;
+    // const savedUser = { name, email };
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        updateUserProfile(name, photo)
+          .then(() => {})
+          .catch((error) => console.log(error.message));
+        navigate("/");
+      })
+      .catch((error) => console.log(error.message));
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200">

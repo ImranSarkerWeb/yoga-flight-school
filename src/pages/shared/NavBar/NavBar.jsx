@@ -3,6 +3,7 @@ import logo from "../../../assets/yogaLogo.png";
 import useAuth from "../../../hooks/useAuth";
 const NavBar = () => {
   const { user } = useAuth();
+  console.log(user);
   const navContent = (
     <>
       {" "}
@@ -60,29 +61,28 @@ const NavBar = () => {
             {navContent}
           </ul>
         </div>
-        {user ? (
-          <Link className="flex items-center gap-3" to="/">
-            {" "}
-            <img src={logo} className=" w-16" />
-            <h2 className="text-2xl font-semibold">Yoga Flight</h2>
-          </Link>
-        ) : (
-          <Link className="btn btn-ghost btn-xs" to="/login">
-            Login
-          </Link>
-        )}
+        <Link className="flex items-center gap-3" to="/">
+          {" "}
+          <img src={logo} className=" w-16" />
+          <h2 className="text-2xl font-semibold">Yoga Flight</h2>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navContent}</ul>
       </div>
 
       <div className="navbar-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-          </div>
-        </label>
-        <a className="btn">Button</a>
+        {user ? (
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div title={user.displayName} className="w-10 rounded-full">
+              <img src={user.photoURL} />
+            </div>
+          </label>
+        ) : (
+          <Link className="btn btn-ghost btn-xs" to="/login">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
