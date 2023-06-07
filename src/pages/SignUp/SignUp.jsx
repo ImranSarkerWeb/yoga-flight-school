@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -9,21 +10,42 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors },
   } = useForm();
   const password = watch("password", "");
   const onSubmit = (data) => {
     const { name, photo, email, password } = data;
-    // const savedUser = { name, email };
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        updateUserProfile(name, photo)
-          .then(() => {})
-          .catch((error) => console.log(error.message));
-        navigate("/");
+        updateUserProfile(name, photo).then(() => {
+          const savedUser = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(savedUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "User created successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
+        });
       })
       .catch((error) => console.log(error.message));
   };
