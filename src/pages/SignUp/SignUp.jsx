@@ -9,6 +9,7 @@ const SignUp = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const password = watch("password", "");
   const onSubmit = (data) => console.log(data);
 
   return (
@@ -35,36 +36,50 @@ const SignUp = () => {
                 className="input input-bordered"
               />
               {errors.name?.type === "required" && (
-                <p role="alert">First name is required</p>
+                <p role="alert" className="text-red-500">
+                  First name is required
+                </p>
               )}
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Photo Url</span>
+                <span className="label-text">Photo URL</span>
               </label>
               <input
                 type="text"
-                required
-                name="photo"
+                id="photo"
                 placeholder="Photo URL"
                 className="input input-bordered"
+                {...register("photo", { required: "Photo URL is required." })}
               />
+              {errors.photo && (
+                <p role="alert" className="text-red-500">
+                  {errors.photo.message}
+                </p>
+              )}
             </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
-                {...register("mail", { required: "Email Address is required" })}
-                aria-invalid={errors.mail ? "true" : "false"}
-                name="email"
                 type="email"
-                placeholder="email"
+                id="email"
+                placeholder="Email"
                 className="input input-bordered"
+                {...register("email", {
+                  required: "Email Address is required.",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address.",
+                  },
+                })}
+                aria-invalid={errors.email ? "true" : "false"}
               />
-              {errors.mail && (
+              {errors.email && (
                 <p role="alert" className="text-red-500">
-                  {errors.mail?.message}
+                  {errors.email.message}
                 </p>
               )}
             </div>
@@ -74,20 +89,46 @@ const SignUp = () => {
               </label>
               <input
                 {...register("password", {
-                  pattern: /^[A-Za-z]+$/i,
-                  required: true,
-                  maxLength: 31,
+                  required: "Password is required.",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters long.",
+                  },
+                  pattern: {
+                    value: /(?=.*[A-Z])(?=.*[@#$%^&+=])/,
+                    message:
+                      "Password must contain a capital letter and a special character.",
+                  },
                 })}
                 placeholder="password"
                 name="password"
                 className="input input-bordered"
               />
-              {errors.name?.type === "required" && (
-                <p role="alert" className="text-red-700">
-                  Password is required
-                </p>
+              {errors.password && (
+                <p className="text-red-500">{errors.password.message}</p>
               )}
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Confirm Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                className="input input-bordered"
+                required
+                {...register("confirmPassword", {
+                  required: "Confirm Password is required.",
+                  validate: (value) =>
+                    value === password || "Passwords do not match.",
+                })}
+              />
+              {errors.confirmPassword && (
+                <p className="text-red-500">{errors.confirmPassword.message}</p>
+              )}
+            </div>
+
             <div className="form-control mt-6">
               <input
                 className="btn btn-primary"
