@@ -117,7 +117,6 @@ const SignUp = () => {
                 placeholder="Confirm Password"
                 name="confirmPassword"
                 className="input input-bordered"
-                required
                 {...register("confirmPassword", {
                   required: "Confirm Password is required.",
                   validate: (value) =>
