@@ -2,8 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/yogaLogo.png";
 import useAuth from "../../../hooks/useAuth";
 const NavBar = () => {
-  const { user } = useAuth();
-  console.log(user);
+  const { user, logOut } = useAuth();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error.message));
+  };
   const navContent = (
     <>
       {" "}
@@ -73,11 +77,17 @@ const NavBar = () => {
 
       <div className="navbar-end">
         {user ? (
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div title={user.displayName} className="w-10 rounded-full">
-              <img src={user.photoURL} />
-            </div>
-          </label>
+          <>
+            {" "}
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div title={user.displayName} className="w-10 rounded-full">
+                <img src={user.photoURL} />
+              </div>
+            </label>
+            <button className="btn btn-xs" onClick={handleLogOut}>
+              LogOut
+            </button>
+          </>
         ) : (
           <Link className="btn btn-ghost btn-xs" to="/login">
             Login
