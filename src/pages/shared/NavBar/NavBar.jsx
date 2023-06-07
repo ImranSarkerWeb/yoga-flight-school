@@ -1,6 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/yogaLogo.png";
+import useAuth from "../../../hooks/useAuth";
 const NavBar = () => {
+  const { user } = useAuth();
   const navContent = (
     <>
       {" "}
@@ -58,11 +60,17 @@ const NavBar = () => {
             {navContent}
           </ul>
         </div>
-        <Link className="flex items-center gap-3" to="/">
-          {" "}
-          <img src={logo} className=" w-16" />
-          <h2 className="text-2xl font-semibold">Yoga Flight</h2>
-        </Link>
+        {user ? (
+          <Link className="flex items-center gap-3" to="/">
+            {" "}
+            <img src={logo} className=" w-16" />
+            <h2 className="text-2xl font-semibold">Yoga Flight</h2>
+          </Link>
+        ) : (
+          <Link className="btn btn-ghost btn-xs" to="/login">
+            Login
+          </Link>
+        )}
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navContent}</ul>
