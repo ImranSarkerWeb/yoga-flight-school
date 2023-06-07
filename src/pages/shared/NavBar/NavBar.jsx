@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/yogaLogo.png";
 import useAuth from "../../../hooks/useAuth";
+import ThemeToggle from "../../../components/ThemeToggle/ThemeToggle";
 const NavBar = () => {
   const { user, logOut } = useAuth();
   const handleLogOut = () => {
@@ -93,6 +94,7 @@ const NavBar = () => {
             Login
           </Link>
         )}
+        <ThemeToggle></ThemeToggle>
       </div>
     </div>
   );
