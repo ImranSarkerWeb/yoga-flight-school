@@ -29,7 +29,12 @@ const NavBar = () => {
         </NavLink>
       </li>
       <li>
-        <a>Classes</a>
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-blue-600" : "")}
+          to="/classes"
+        >
+          Classes
+        </NavLink>
       </li>
       <li>
         <NavLink

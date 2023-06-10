@@ -1,0 +1,93 @@
+[
+    {
+      "_id": "1",
+      "name": "Hatha Yoga",
+      "image": "https://shawellness.com/shamagazine/wp-content/uploads/2015/03/hatha-yoga-vs.-bikram-yoga.jpg",
+      "instructorName": "Emily Johnson",
+      "availableSeats": 0,
+      "totalSeats": 12,
+      "price": 25.99
+    },
+    {
+      "_id": "2",
+      "name": "Vinyasa Flow",
+      "image": "https://images.everydayhealth.com/images/healthy-living/fitness/vinyasa-yoga-722x406.jpg?sfvrsn=63a7bd66_0",
+      "instructorName": "David Smith",
+      "availableSeats": 15,
+      "totalSeats": 15,
+      "price": 29.99
+    },
+    {
+      "_id": "3",
+      "name": "Ashtanga Yoga",
+      "image": "https://images.ganeshaspeaks.com/yoga/ashtanga-yoga.webp",
+      "instructorName": "Sarah Thompson",
+      "availableSeats": 10,
+      "totalSeats": 10,
+      "price": 27.99
+    },
+    {
+      "_id": "4",
+      "name": "Kundalini Yoga",
+      "image": "https://drprem.com/wellness/wp-content/uploads/sites/7/2013/04/Kundalini-Yoga.jpg",
+      "instructorName": "Michael Davis",
+      "availableSeats": 8,
+      "totalSeats": 8,
+      "price": 23.99
+    },
+    {
+      "_id": "5",
+      "name": "Bikram Yoga",
+      "image": "https://bikramyogacity.se/wp-content/uploads/2019/09/bikramyogacity-e1569318845814-3000x1710.jpg",
+      "instructorName": "Jessica Wilson",
+      "availableSeats": 20,
+      "totalSeats": 20,
+      "price": 32.99
+    },
+    {
+      "_id": "6",
+      "name": "Yin Yoga",
+      "image": "https://www.thetastyskicompany.co.uk/wp-content/uploads/2019/09/Yin-Yoga-French-Alps-Retreat-2.jpg",
+      "instructorName": "Matthew Lee",
+      "availableSeats": 14,
+      "totalSeats": 14,
+      "price": 21.99
+    },
+    {
+      "_id": "7",
+      "name": "Restorative Yoga",
+      "image": "https://i.ytimg.com/vi/Tss-7870_gA/maxresdefault.jpg",
+      "instructorName": "Olivia Anderson",
+      "availableSeats": 18,
+      "totalSeats": 18,
+      "price": 26.99
+    },
+    {
+      "_id": "8",
+      "name": "Power Yoga",
+      "image": "https://images.onlymyhealth.com/imported/images/2021/October/18_Oct_2021/power_Large.jpg",
+      "instructorName": "Daniel Harris",
+      "availableSeats": 16,
+      "totalSeats": 16,
+      "price": 28.99
+    },
+    {
+      "_id": "9",
+      "name": "Iyengar Yoga",
+      "image": "https://helthyleaf.com/wp-content/uploads/2022/07/2.png",
+      "instructorName": "Sophia Martinez",
+      "availableSeats": 10,
+      "totalSeats": 10,
+      "price": 24.99
+    },
+    {
+      "_id": "10",
+      "name": "AcroYoga",
+      "image": "https://i.insider.com/5579b0866bb3f7fb4049d052?width=1000&format=jpeg&auto=webp",
+      "instructorName": "Alexander Turner",
+      "availableSeats": 10,
+      "totalSeats": 10,
+      "price": 30.99
+    }
+  ]
+  

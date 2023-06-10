@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Instructors from "../pages/Instructors/Instructors";
 import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import Classes from "../pages/Classes/Classes";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
       {
         path: "/instructors",
         element: <Instructors></Instructors>,
+      },
+      {
+        path: "/classes",
+        element: <Classes></Classes>,
+        loader: () => fetch("classes.json"),
       },
     ],
   },
