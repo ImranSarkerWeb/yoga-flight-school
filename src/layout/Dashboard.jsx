@@ -10,7 +10,7 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  const admin = false;
+  const admin = true;
   const instructor = false;
   return (
     <div className="drawer lg:drawer-open">
@@ -44,8 +44,8 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageitems">
-                  <FaUsers></FaUsers> Manage User
+                <NavLink to="/dashboard/allusers">
+                  <FaUsers></FaUsers> Manage All User
                 </NavLink>
               </li>
             </>
@@ -59,7 +59,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">
+                <NavLink to="/dashboard/addclass">
                   {" "}
                   <FaPlusSquare></FaPlusSquare>Add a Class
                 </NavLink>
@@ -102,9 +102,6 @@ const Dashboard = () => {
             <NavLink to="/">
               <FaHome></FaHome> Home
             </NavLink>{" "}
-          </li>
-          <li>
-            <NavLink to="/menu"> Our Menu</NavLink>
           </li>
         </ul>
       </div>

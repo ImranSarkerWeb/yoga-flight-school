@@ -9,6 +9,8 @@ import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Classes from "../pages/Classes/Classes";
 import StudentCart from "../pages/Dashboard/StudentCart/StudentCart";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,18 @@ const router = createBrowserRouter([
       {
         path: "mycart",
         element: <StudentCart></StudentCart>,
+      },
+      {
+        path: "addclass",
+        element: <AddClass></AddClass>,
+      },
+      {
+        path: "allusers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "userhome",
+        element: "juset dashboard",
       },
       {
         path: "userhome",
