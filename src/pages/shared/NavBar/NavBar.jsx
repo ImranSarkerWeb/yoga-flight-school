@@ -32,7 +32,12 @@ const NavBar = () => {
         <a>Classes</a>
       </li>
       <li>
-        <a>Dashboard</a>
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-blue-600" : "")}
+          to="/dashboard"
+        >
+          Dashboard
+        </NavLink>
       </li>
       <li>
         <Link to="/login">Login</Link>

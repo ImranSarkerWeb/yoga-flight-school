@@ -24,11 +24,10 @@ const SocialLogin = () => {
           body: JSON.stringify(savedUser),
         })
           .then((res) => res.json())
-          .then(() => {
-            navigate(from, { replace: true });
-          });
+          .then(() => {});
       })
       .catch((error) => console.log(error.message));
+    navigate(from, { replace: true });
   };
   return (
     <div>
