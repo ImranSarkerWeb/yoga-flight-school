@@ -2,6 +2,7 @@ import {
   FaChalkboardTeacher,
   FaHome,
   FaPlusSquare,
+  FaShoppingCart,
   FaUniversity,
   FaUsers,
   FaWallet,
@@ -9,8 +10,8 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  const admin = true;
-  const instructor = true;
+  const admin = false;
+  const instructor = false;
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -90,7 +91,9 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/mycart">My Cart</NavLink>
+                <NavLink to="/dashboard/mycart">
+                  <FaShoppingCart></FaShoppingCart> My Cart
+                </NavLink>
               </li>
             </>
           )}
@@ -102,9 +105,6 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to="/menu"> Our Menu</NavLink>
-          </li>
-          <li>
-            <NavLink to="/order/salad">Order Food</NavLink>
           </li>
         </ul>
       </div>

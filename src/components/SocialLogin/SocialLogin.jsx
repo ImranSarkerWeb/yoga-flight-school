@@ -12,6 +12,7 @@ const SocialLogin = () => {
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
+        navigate(from, { replace: true });
         const savedUser = {
           name: loggedInUser.displayName,
           email: loggedInUser.email,
@@ -27,7 +28,6 @@ const SocialLogin = () => {
           .then(() => {});
       })
       .catch((error) => console.log(error.message));
-    navigate(from, { replace: true });
   };
   return (
     <div>

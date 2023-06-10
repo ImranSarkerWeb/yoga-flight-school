@@ -8,6 +8,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Classes from "../pages/Classes/Classes";
+import StudentCart from "../pages/Dashboard/StudentCart/StudentCart";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: "/classes",
         element: <Classes></Classes>,
-        loader: () => fetch("classes.json"),
+        loader: () => fetch("http://localhost:5000/classes"),
       },
     ],
   },
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "mycart",
+        element: <StudentCart></StudentCart>,
+      },
       {
         path: "userhome",
         element: "juset dashboard",
