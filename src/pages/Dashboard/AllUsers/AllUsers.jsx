@@ -7,7 +7,7 @@ const AllUsers = () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
-
+  console.log(users);
   const handleUser = (user, role) => {
     fetch(`http://localhost:5000/users/admin/${user._id + "+" + role}`, {
       method: "PATCH",
@@ -72,47 +72,48 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <tr key={user._id}>
-                <th>{index + 1}</th>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td className="uppercase">
-                  {user.role ? user.role : "student"}
-                </td>
-                <td className="flex gap-4 items-center justify-center">
-                  {user.role === "admin" ? (
-                    <div className="badge badge-neutral">Admin</div>
-                  ) : (
+            {users &&
+              users.map((user, index) => (
+                <tr key={user._id}>
+                  <th>{index + 1}</th>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td className="uppercase">
+                    {user.role ? user.role : "student"}
+                  </td>
+                  <td className="flex gap-4 items-center justify-center">
+                    {user.role === "admin" ? (
+                      <div className="badge badge-neutral">Admin</div>
+                    ) : (
+                      <button
+                        onClick={() => handleUser(user, "admin")}
+                        className="btn btn-error btn-xs"
+                      >
+                        <FaUserShield></FaUserShield> Make Admin
+                      </button>
+                    )}
+                    {user.role === "instructor" ? (
+                      <div className="badge badge-neutral">Instructor</div>
+                    ) : (
+                      <button
+                        onClick={() => handleUser(user, "instructor")}
+                        className="btn btn-error btn-xs"
+                      >
+                        <FaChalkboardTeacher></FaChalkboardTeacher> Make
+                        Instructor
+                      </button>
+                    )}
+                  </td>
+                  <td>
                     <button
-                      onClick={() => handleUser(user, "admin")}
-                      className="btn btn-error btn-xs"
+                      onClick={() => handleDelete(user)}
+                      className="btn btn-ghost bg-red-600  text-white"
                     >
-                      <FaUserShield></FaUserShield> Make Admin
+                      <FaTrashAlt></FaTrashAlt>
                     </button>
-                  )}
-                  {user.role === "instructor" ? (
-                    <div className="badge badge-neutral">Instructor</div>
-                  ) : (
-                    <button
-                      onClick={() => handleUser(user, "instructor")}
-                      className="btn btn-error btn-xs"
-                    >
-                      <FaChalkboardTeacher></FaChalkboardTeacher> Make
-                      Instructor
-                    </button>
-                  )}
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(user)}
-                    className="btn btn-ghost bg-red-600  text-white"
-                  >
-                    <FaTrashAlt></FaTrashAlt>
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
