@@ -15,11 +15,22 @@ const SignUp = () => {
   const password = watch("password", "");
   const onSubmit = (data) => {
     const { name, photo, email, password } = data;
-    // const savedUser = { name, email };
+    const savedUser = { name, email };
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(savedUser),
+        })
+          .then((res) => res.json())
+          .then(() => {});
+
         updateUserProfile(name, photo)
           .then(() => {})
           .catch((error) => console.log(error.message));
