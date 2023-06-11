@@ -1,17 +1,67 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+const img_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_API;
 
 const AddClass = () => {
   const { user } = useAuth();
+  const [axiosSecure] = useAxiosSecure();
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    // Handle form submission
-    console.log(data);
+    console.log(data.courseImage[0]);
+    const formData = new FormData();
+    formData.append("image", data.courseImage[0]);
+    console.log(formData);
+
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {
+        if (imgResponse.success) {
+          const imgURL = imgResponse.data.display_url;
+          const {
+            courseName,
+            price,
+            availableSeats,
+            instructorEmail,
+            instructorName,
+          } = data;
+          const newClass = {
+            name: courseName,
+            price: parseFloat(price),
+            availableSeats: parseInt(availableSeats),
+            totalSeats: parseInt(availableSeats),
+            instructorEmail,
+            instructorName,
+            status: "Pending",
+            image: imgURL,
+          };
+          console.log(newClass);
+          axiosSecure.post("/classes", newClass).then((data) => {
+            console.log("after posting new menu item", data.data);
+            if (data.data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Item added successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+        }
+      });
   };
 
   return (
@@ -25,21 +75,22 @@ const AddClass = () => {
           id="courseName"
           className="input input-bordered input-success w-full max-w-xs"
         />
-        {errors.className && (
+        {errors.courseName && (
           <p className="text-red-500">This field is required</p>
         )}
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="classImage" className=" font-medium mb-1">
-          Class Image
+      <div className="form-control w-full my-4">
+        <label className="label" htmlFor="courseImage">
+          <span className=" font-medium mb-1">Class Image</span>
         </label>
         <input
-          {...register("classImage", { required: true })}
-          id="classImage"
-          className="input input-bordered input-success w-full max-w-xs"
+          id="courseImage"
+          type="file"
+          {...register("courseImage", { required: true })}
+          className="file-input file-input-bordered input-success w-full max-w-xs "
         />
-        {errors.className && (
+        {errors.courseImage && (
           <p className="text-red-500">This field is required</p>
         )}
       </div>
