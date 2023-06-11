@@ -8,10 +8,13 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useRole from "../hooks/useRole";
 
 const Dashboard = () => {
-  const admin = true;
-  const instructor = false;
+  const role = useRole();
+  console.log(role);
+  const admin = role[0] == "admin";
+  const instructor = role[0] == "instructor";
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
