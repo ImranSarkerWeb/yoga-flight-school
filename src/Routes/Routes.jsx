@@ -15,6 +15,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import InstructorClass from "../pages/Dashboard/InstructorClass/InstructorClass";
+import AllClasses from "../pages/Dashboard/ManageClasses/AllClasses";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/instructorclass",
         element: <InstructorClass></InstructorClass>,
+      },
+      {
+        path: "/dashboard/manageclass",
+        element: <AllClasses></AllClasses>,
+        loader: () => fetch("http://localhost:5000/classes"),
       },
     ],
   },

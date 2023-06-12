@@ -4,11 +4,14 @@ import ClassCard from "./ClassCard";
 const Classes = () => {
   const classes = useLoaderData();
 
+  const approvedClass = classes.filter((cls) => cls.status === "Approved");
+  console.log(approvedClass);
   return (
     <div className="my-12 grid  gap-3 md:grid-cols-3 ">
-      {classes.map((classItem) => (
-        <ClassCard key={classItem._id} classItem={classItem}></ClassCard>
-      ))}
+      {approvedClass &&
+        approvedClass.map((classItem) => (
+          <ClassCard key={classItem._id} classItem={classItem}></ClassCard>
+        ))}
     </div>
   );
 };
