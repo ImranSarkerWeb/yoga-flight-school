@@ -15,7 +15,7 @@ const SignUp = () => {
   const password = watch("password", "");
   const onSubmit = (data) => {
     const { name, photo, email, password } = data;
-    const savedUser = { name, email, role: "student" };
+    const savedUser = { name, email, image: photo, role: "student" };
     createUser(email, password)
       .then((result) => {
         const user = result.user;
