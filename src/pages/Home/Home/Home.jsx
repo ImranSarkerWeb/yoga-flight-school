@@ -1,12 +1,13 @@
 import Banner from "../Banner/Banner";
 import Hero from "../Hero/Hero";
+import PopularClass from "../PopularClass/PopularClass";
 
 const Home = () => {
   return (
     <div>
       <Hero></Hero>
       <Banner></Banner>
-      this is home
+      <PopularClass></PopularClass>
     </div>
   );
 };
