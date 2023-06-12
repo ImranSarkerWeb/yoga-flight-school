@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {
   FaChalkboardTeacher,
   FaHome,
@@ -16,6 +17,7 @@ const Dashboard = () => {
   console.log(role);
   const admin = role[0] == "admin";
   const instructor = role[0] == "instructor";
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -33,80 +35,123 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bg-orange-700 text-base-content">
           {/* Sidebar content here */}
-          {admin ? (
+          {admin && (
             <>
-              {/* Admin dashboard */}
-              <li>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 <NavLink to="/dashboard/adminhome">
-                  <FaHome></FaHome> Admin Home
+                  <FaHome /> Admin Home
                 </NavLink>
-              </li>
-              <li>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 <NavLink to="/dashboard/manageclass">
-                  {" "}
-                  <FaUniversity></FaUniversity> Manage Class
+                  <FaUniversity /> Manage Class
                 </NavLink>
-              </li>
-              <li>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <NavLink to="/dashboard/allusers">
-                  <FaUsers></FaUsers> Manage All User
+                  <FaUsers /> Manage All User
                 </NavLink>
-              </li>
-            </>
-          ) : instructor ? (
-            <>
-              {" "}
-              {/* instructor dashboard */}
-              <li>
-                <NavLink to="/dashboard/instructorhome">
-                  <FaHome></FaHome> Instructor Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/addclass">
-                  {" "}
-                  <FaPlusSquare></FaPlusSquare>Add a Class
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/instructorclass">
-                  <FaUniversity></FaUniversity> My Classes
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            <>
-              {/* Studentt dashboard */}
-              <li>
-                <NavLink to="/dashboard/userhome">
-                  <FaHome></FaHome> Student Home
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/dashboard/paymenthistory">
-                  {" "}
-                  <FaWallet></FaWallet>Payment History
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/enrolled">
-                  <FaChalkboardTeacher></FaChalkboardTeacher> My Enrolled Class
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/mycart">
-                  <FaShoppingCart></FaShoppingCart> My Selected Classes
-                </NavLink>
-              </li>
+              </motion.li>
             </>
           )}
-          <div className="divider"></div>
-          <li>
+          {instructor && (
+            <>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <NavLink to="/dashboard/instructorhome">
+                  <FaHome /> Instructor Home
+                </NavLink>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <NavLink to="/dashboard/addclass">
+                  <FaPlusSquare /> Add a Class
+                </NavLink>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <NavLink to="/dashboard/instructorclass">
+                  <FaUniversity /> My Classes
+                </NavLink>
+              </motion.li>
+            </>
+          )}
+          {!admin && !instructor && (
+            <>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <NavLink to="/dashboard/userhome">
+                  <FaHome /> Student Home
+                </NavLink>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <NavLink to="/dashboard/paymenthistory">
+                  <FaWallet /> Payment History
+                </NavLink>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <NavLink to="/dashboard/enrolled">
+                  <FaChalkboardTeacher /> My Enrolled Class
+                </NavLink>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <NavLink to="/dashboard/mycart">
+                  <FaShoppingCart /> My Selected Classes
+                </NavLink>
+              </motion.li>
+            </>
+          )}
+          <motion.div
+            className="divider"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          />
+          <motion.li
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <NavLink to="/">
-              <FaHome></FaHome> Home
-            </NavLink>{" "}
-          </li>
+              <FaHome /> Home
+            </NavLink>
+          </motion.li>
         </ul>
       </div>
     </div>
