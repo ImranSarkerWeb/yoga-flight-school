@@ -47,7 +47,6 @@ const CheckoutForm = ({ cart, price }) => {
       setCardError(error.message);
     } else {
       setCardError("");
-      // console.log('payment method', paymentMethod)
     }
 
     setProcessing(true);
@@ -71,7 +70,6 @@ const CheckoutForm = ({ cart, price }) => {
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
-      // save payment information to the server
       const payment = {
         email: user?.email,
         transactionId: paymentIntent.id,
@@ -86,6 +84,11 @@ const CheckoutForm = ({ cart, price }) => {
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
       });
+      axiosSecure
+        .patch("/enrolled", { ids: payment.courseItems })
+        .then((res) => {
+          console.log(res.data);
+        });
     }
   };
 
@@ -119,7 +122,7 @@ const CheckoutForm = ({ cart, price }) => {
       {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
       {transactionId && (
         <p className="text-green-500">
-          Transaction complete with transactionId: {transactionId}
+          You have compeleted transaction. Your transactionId: {transactionId}
         </p>
       )}
     </>
