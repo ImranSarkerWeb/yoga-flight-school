@@ -36,14 +36,16 @@ const NavBar = () => {
           Classes
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-600" : "")}
-          to="/dashboard"
-        >
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? "text-blue-600" : "")}
+            to="/dashboard"
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
     </>
   );
   return (

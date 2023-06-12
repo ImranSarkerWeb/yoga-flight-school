@@ -14,7 +14,6 @@ import useRole from "../hooks/useRole";
 const Dashboard = () => {
   const role = useRole();
   localStorage.setItem("role", role[0]);
-  console.log(role);
   const admin = role[0] == "admin";
   const instructor = role[0] == "instructor";
 

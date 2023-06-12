@@ -7,7 +7,6 @@ const PopularClass = () => {
       .then((res) => res.json())
       .then((data) => setPopular(data));
   }, []);
-  console.log(popular);
   return (
     <div className="mt-36">
       <h1 className="text-center my-16 text-3xl md:text-5xl font-bold">
