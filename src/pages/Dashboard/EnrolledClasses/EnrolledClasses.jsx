@@ -11,7 +11,7 @@ const EnrolledClasses = () => {
   let enrolledId = [];
 
   useEffect(() => {
-    fetch(`http://localhost:5000/enrolled/${user.email}`)
+    fetch(`https://yoga-flight-server.vercel.app/enrolled/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setEnrolled(data);

@@ -6,7 +6,7 @@ const InstructorClass = () => {
   const [myClasses, setMyClasses] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/instructors/${user?.email}`)
+    fetch(`https://yoga-flight-server.vercel.app/instructors/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyClasses(data));
   }, [user]);
@@ -32,8 +32,12 @@ const InstructorClass = () => {
               <p>Status: {myClass.status}</p>
 
               <p> Available Seats: {myClass.availableSeats}</p>
-              <p>Total Enrolled Student: {0}</p>
-              <p>Feedback: {""}</p>
+              <p>Total Enrolled Student: {myClass.enrolled}</p>
+              <p>
+                {myClass.status === "Pending" || myClass.status === "Approved"
+                  ? ""
+                  : `Feedback: ${myClass?.feedback}`}
+              </p>
               <div className="card-actions justify-end">
                 <button className="btn btn-secondary">Update</button>
               </div>

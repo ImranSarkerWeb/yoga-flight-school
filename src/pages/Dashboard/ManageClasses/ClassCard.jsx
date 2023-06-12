@@ -6,9 +6,14 @@ const ClassCard = ({ classItem }) => {
   const [status, setStatus] = useState(classItem.status);
 
   const handleClass = (id, status) => {
-    fetch(`http://localhost:5000/classes/admin/${id + "+" + status}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://yoga-flight-server.vercel.app/classes/admin/${
+        id + "+" + status
+      }`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
@@ -40,9 +45,14 @@ const ClassCard = ({ classItem }) => {
     });
     console.log(text);
     if (text) {
-      fetch(`http://localhost:5000/feedback/admin/${id + "+" + text}`, {
-        method: "PATCH",
-      })
+      fetch(
+        `https://yoga-flight-server.vercel.app/feedback/admin/${
+          id + "+" + text
+        }`,
+        {
+          method: "PATCH",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.modifiedCount) {

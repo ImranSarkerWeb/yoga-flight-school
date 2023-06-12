@@ -17,6 +17,8 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const [error, setError] = useState(null);
+
   const onSubmit = (data) => {
     signIn(data.email, data.password)
       .then((result) => {
@@ -25,9 +27,9 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage, errorCode);
+        console.log(errorMessage);
+        setError(errorMessage);
       });
     console.log(data);
   };
@@ -102,6 +104,11 @@ const Login = () => {
               />
             </div>
           </form>
+          {error && (
+            <p role="alert" className="text-red-500 text-center mt-4">
+              {error}
+            </p>
+          )}
           <p className="text-center mb-4">
             <small>
               New here?{" "}

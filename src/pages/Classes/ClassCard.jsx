@@ -18,7 +18,7 @@ const ClassCard = ({ classItem }) => {
   // useEffect(() => {
   //   const fetchUserData = async () => {
   //     const response = await fetch(
-  //       `http://localhost:5000/users/${user?.email}`
+  //       `https://yoga-flight-server.vercel.app/users/${user?.email}`
   //     );
   //     const data = await response.json();
   //     console.log(data);
@@ -36,7 +36,7 @@ const ClassCard = ({ classItem }) => {
         price: item.price,
         email: user.email,
       };
-      fetch("http://localhost:5000/carts", {
+      fetch("https://yoga-flight-server.vercel.app/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

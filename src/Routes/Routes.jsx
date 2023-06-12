@@ -38,12 +38,13 @@ const router = createBrowserRouter([
       {
         path: "/instructors",
         element: <Instructors></Instructors>,
-        loader: () => fetch("http://localhost:5000/instructors"),
+        loader: () =>
+          fetch("https://yoga-flight-server.vercel.app/instructors"),
       },
       {
         path: "/classes",
         element: <Classes></Classes>,
-        loader: () => fetch("http://localhost:5000/classes"),
+        loader: () => fetch("https://yoga-flight-server.vercel.app/classes"),
       },
     ],
   },
@@ -75,7 +76,7 @@ const router = createBrowserRouter([
       {
         path: "enrolled",
         element: <EnrolledClasses></EnrolledClasses>,
-        loader: () => fetch("http://localhost:5000/classes"),
+        loader: () => fetch("https://yoga-flight-server.vercel.app/classes"),
       },
 
       {
@@ -101,7 +102,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manageclass",
         element: <AllClasses></AllClasses>,
-        loader: () => fetch("http://localhost:5000/classes"),
+        loader: () => fetch("https://yoga-flight-server.vercel.app/classes"),
       },
     ],
   },

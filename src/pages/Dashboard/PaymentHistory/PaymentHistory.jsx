@@ -6,7 +6,7 @@ const PaymentHistory = () => {
   const [history, setHistory] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/payments/${user?.email}`)
+    fetch(`https://yoga-flight-server.vercel.app/payments/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setHistory(data));
   }, [user]);

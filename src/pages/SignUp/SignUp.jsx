@@ -21,7 +21,7 @@ const SignUp = () => {
         const user = result.user;
         console.log(user);
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://yoga-flight-server.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -115,6 +115,7 @@ const SignUp = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
+                type="password"
                 {...register("password", {
                   required: "Password is required.",
                   minLength: {
