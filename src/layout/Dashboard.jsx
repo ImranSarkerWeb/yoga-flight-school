@@ -12,6 +12,7 @@ import useRole from "../hooks/useRole";
 
 const Dashboard = () => {
   const role = useRole();
+  localStorage.setItem("role", role[0]);
   console.log(role);
   const admin = role[0] == "admin";
   const instructor = role[0] == "instructor";
@@ -89,13 +90,13 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">
+                <NavLink to="/dashboard/enrolled">
                   <FaChalkboardTeacher></FaChalkboardTeacher> My Enrolled Class
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/mycart">
-                  <FaShoppingCart></FaShoppingCart> My Cart
+                  <FaShoppingCart></FaShoppingCart> My Selected Classes
                 </NavLink>
               </li>
             </>

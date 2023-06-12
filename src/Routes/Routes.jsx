@@ -12,6 +12,7 @@ import StudentCart from "../pages/Dashboard/StudentCart/StudentCart";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,11 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "enrolled",
+        element: <EnrolledClasses></EnrolledClasses>,
+        loader: () => fetch("http://localhost:5000/classes"),
       },
       {
         path: "userhome",

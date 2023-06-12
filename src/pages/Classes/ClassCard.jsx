@@ -6,23 +6,36 @@ import useAuth from "../../hooks/useAuth";
 
 // eslint-disable-next-line react/prop-types
 const ClassCard = ({ classItem }) => {
+  const student = localStorage.getItem("role") == "student";
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    name,
-    image,
-    price,
-    instructorName,
-    totalSeats,
-    availableSeats,
-    _id,
-  } = classItem;
+  const btnStyle =
+    "py-2 px-4 bg-gradient-to-r from-orange-500 to-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50";
+  const { name, image, price, instructorName, totalSeats, availableSeats } =
+    classItem;
+
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const response = await fetch(
+  //       `http://localhost:5000/users/${user?.email}`
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+  //   };
+
+  //   fetchUserData();
+  // }, []);
 
   const handleAddToCart = (item) => {
-    console.log(item);
     if (user && user.email) {
-      const cartItem = { courseId: _id, name, image, price, email: user.email };
+      const cartItem = {
+        courseId: item._id,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        email: user.email,
+      };
       fetch("http://localhost:5000/carts", {
         method: "POST",
         headers: {
@@ -77,8 +90,11 @@ const ClassCard = ({ classItem }) => {
         <p> Available Seats: {availableSeats}</p>
         <div className="card-actions justify-end">
           <button
+            disabled={!availableSeats || !student}
             onClick={() => handleAddToCart(classItem)}
-            className="py-2 px-4 bg-gradient-to-r from-orange-500 to-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+            className={`${
+              !availableSeats || !student ? "btn btn-disabled " : btnStyle
+            }`}
           >
             Select Now
           </button>
