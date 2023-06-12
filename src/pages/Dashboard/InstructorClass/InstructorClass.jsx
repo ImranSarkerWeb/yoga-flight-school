@@ -29,7 +29,17 @@ const InstructorClass = () => {
               <h2 className="card-title">
                 Instructor: {myClass.instructorName}
               </h2>
-              <p>Status: {myClass.status}</p>
+              <p
+                className={`badge ${
+                  myClass.status === "Pending"
+                    ? "badge-warning"
+                    : myClass.status === "Approved"
+                    ? "badge-success"
+                    : "badge-error"
+                }`}
+              >
+                Status: {myClass.status}
+              </p>
 
               <p> Available Seats: {myClass.availableSeats}</p>
               <p>Total Enrolled Student: {myClass.enrolled}</p>
