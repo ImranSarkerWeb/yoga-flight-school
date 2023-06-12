@@ -3,25 +3,59 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 
 const ClassCard = ({ classItem }) => {
-  const [status, setStatus] = useState(classItem.status); // State variable for class status
+  const [status, setStatus] = useState(classItem.status);
 
-  const handleUser = (id, role) => {
-    fetch(`http://localhost:5000/classes/admin/${id + "+" + role}`, {
+  const handleClass = (id, status) => {
+    fetch(`http://localhost:5000/classes/admin/${id + "+" + status}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
-          setStatus(role); // Update the status in the state variable
+          setStatus(status);
           Swal.fire({
             position: "center",
             icon: "success",
-            title: `Class is ${role}!`,
+            title: `Class is ${status}!`,
             showConfirmButton: false,
             timer: 1500,
           });
         }
       });
+  };
+
+  const handleFeedback = async (id) => {
+    const { value: text } = await Swal.fire({
+      title: "Send Feedback",
+      input: "textarea",
+      inputPlaceholder: "Enter your feedback here...",
+      showCancelButton: true,
+      confirmButtonText: "Send",
+      cancelButtonText: "Cancel",
+      inputValidator: (value) => {
+        if (!value) {
+          return "Please enter your feedback";
+        }
+      },
+    });
+    console.log(text);
+    if (text) {
+      fetch(`http://localhost:5000/feedback/admin/${id + "+" + text}`, {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.modifiedCount) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `Feedback Submitted: ${text}!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    }
   };
 
   const {
@@ -63,19 +97,24 @@ const ClassCard = ({ classItem }) => {
         <div className="card-actions justify-end">
           <button
             disabled={status === "Approved" || status === "Denied"}
-            onClick={() => handleUser(_id, "Approved")}
+            onClick={() => handleClass(_id, "Approved")}
             className="btn btn-success btn-xs"
           >
             Approve
           </button>
           <button
             disabled={status === "Approved" || status === "Denied"}
-            onClick={() => handleUser(_id, "Denied")}
+            onClick={() => handleClass(_id, "Denied")}
             className="btn btn-error btn-xs"
           >
             Deny
           </button>
-          <button className="btn btn-info btn-xs">Feedback</button>
+          <button
+            onClick={() => handleFeedback(_id)}
+            className="btn btn-info btn-xs"
+          >
+            Feedback
+          </button>
         </div>
       </div>
     </div>
