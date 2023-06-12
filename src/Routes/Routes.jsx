@@ -14,6 +14,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import InstructorClass from "../pages/Dashboard/InstructorClass/InstructorClass";
 
 const router = createBrowserRouter([
   {
@@ -81,7 +82,19 @@ const router = createBrowserRouter([
       },
       {
         path: "userhome",
-        element: "juset dashboard",
+        element: "Student dashboard comming soon",
+      },
+      {
+        path: "adminhome",
+        element: "Admin dashboard comming soon",
+      },
+      {
+        path: "instructorhome",
+        element: "Instructor dashboard comming soon",
+      },
+      {
+        path: "/dashboard/instructorclass",
+        element: <InstructorClass></InstructorClass>,
       },
     ],
   },
