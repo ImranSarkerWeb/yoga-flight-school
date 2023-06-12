@@ -43,7 +43,7 @@ const ClassCard = ({ classItem }) => {
         }
       },
     });
-    console.log(text);
+
     if (text) {
       fetch(
         `https://yoga-flight-server.vercel.app/feedback/admin/${

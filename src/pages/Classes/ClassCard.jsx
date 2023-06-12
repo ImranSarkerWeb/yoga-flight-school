@@ -15,18 +15,6 @@ const ClassCard = ({ classItem }) => {
   const { name, image, price, instructorName, totalSeats, availableSeats } =
     classItem;
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     const response = await fetch(
-  //       `https://yoga-flight-server.vercel.app/users/${user?.email}`
-  //     );
-  //     const data = await response.json();
-  //     console.log(data);
-  //   };
-
-  //   fetchUserData();
-  // }, []);
-
   const handleAddToCart = (item) => {
     if (user && user.email) {
       const cartItem = {

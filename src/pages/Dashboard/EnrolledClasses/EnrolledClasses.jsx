@@ -6,7 +6,6 @@ const EnrolledClasses = () => {
   const { user } = useAuth();
   const [enrolled, setEnrolled] = useState([]);
   const allClass = useLoaderData();
-  console.log(allClass);
 
   let enrolledId = [];
 
@@ -25,7 +24,6 @@ const EnrolledClasses = () => {
     return allClass.find((course) => course._id === id);
   });
 
-  console.log(enrolledCourses);
   return (
     <div className="w-[80%] mx-auto">
       <div className=" font-semibold h-[60px] flex justify-evenly items-center">

@@ -28,10 +28,9 @@ const Login = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+
         setError(errorMessage);
       });
-    console.log(data);
   };
 
   return (

@@ -16,10 +16,8 @@ const AddClass = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data.courseImage[0]);
     const formData = new FormData();
     formData.append("image", data.courseImage[0]);
-    console.log(formData);
 
     fetch(img_hosting_url, {
       method: "POST",
@@ -47,9 +45,8 @@ const AddClass = () => {
             status: "Pending",
             image: imgURL,
           };
-          console.log(newClass);
+
           axiosSecure.post("/classes", newClass).then((data) => {
-            console.log("after posting new menu item", data.data);
             if (data.data.insertedId) {
               reset();
               Swal.fire({

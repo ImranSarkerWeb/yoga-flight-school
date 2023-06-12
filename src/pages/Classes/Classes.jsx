@@ -5,7 +5,6 @@ const Classes = () => {
   const classes = useLoaderData();
 
   const approvedClass = classes.filter((cls) => cls.status === "Approved");
-  console.log(approvedClass);
   return (
     <div className="my-12 grid  gap-3 md:grid-cols-3 ">
       {approvedClass &&
