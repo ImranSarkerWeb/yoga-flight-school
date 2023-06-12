@@ -49,7 +49,7 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -77,8 +77,8 @@ const NavBar = () => {
         </div>
         <Link className="flex items-center gap-3" to="/">
           {" "}
-          <img src={logo} className=" w-16" />
-          <h2 className="text-2xl font-semibold">Yoga Flight</h2>
+          <img src={logo} className="w-14 md:w-16" />
+          <h2 className="text-xl md:text-2xl font-semibold">Yoga Flight</h2>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
